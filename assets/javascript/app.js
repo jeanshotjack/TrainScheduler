@@ -65,7 +65,7 @@ database.ref().on("child_added", function (snapshot) {
     console.log(firstPretty);
 
     var currentTime = moment().format("HH:mm");
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+    console.log("CURRENT TIME: " + moment(currentTime).format("HH:mm"));
 
     var diffT = moment().diff(moment(firstPretty), "minutes");
     console.log("DIFFERENCE IN TIME: " + diffT);
@@ -92,9 +92,9 @@ database.ref().on("child_added", function (snapshot) {
 
     var nameTD = $("<td>").text(svName);
     var destTD = $("<td>").text(svDest);
-    var firstTD = $("<td>").text(firstPretty);
+    var firstTD = $("<td>").text(moment(firstPretty).format("HH:mm"));
     var freqTD = $("<td>").text(svFreq);
-    var nextTD = $("<td>").text(next);
+    var nextTD = $("<td>").text(moment(next).format("HH:mm"));
 
     newRow.append(nameTD);
     newRow.append(destTD);
