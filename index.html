@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Scheduler</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid mb-4 ml-4 mr-4" style="background-color: black">
+        <div class="container">
+            <h1 class="display-6 text-center text-white">
+                Train Schedules</h1>
+        </div>
+    </div>
+    <div class="card m-4">
+        <div class="card-header">
+            <i class="fas fa-table"></i> Current Employees
+        </div>
+
+        <div id="result" class="card-body text-secondary pt-0 pb-0">
+            <p class="card-text">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Train Name</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Earliest</th>
+                            <th scope="col">Frequency</th>
+                            <th scope="col">Next Train</th>
+                        </tr>
+                    </thead>
+                    <tbody id="newNew">
+
+                    </tbody>
+                </table>
+            </p>
+        </div>
+    </div>
+    <div class="card m-4">
+        <div class="card-header">
+            Search Train
+        </div>
+        <div class="card-body text-secondary pt-0 pb-0">
+            <p class="card-text">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Train Name</label>
+                        <input id="name" class="form-control" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Destination</label>
+                        <input id="dest" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Earliest Train</label>
+                        <input id="first" class="form-control text-secondary">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Frequency</label>
+                        <input id="freq" class="form-control">
+                    </div>
+
+                    <span>
+                        <button id="add-train" type="button" class="btn float-right text-white mb-4"
+                            style="background-color: #007BFF">
+                            Submit
+                        </button>
+                </form>
+            </p>
+        </div>
+    </div>
+
+    <script src="assets/javascript/app.js"></script>
+</body>
+
+</html>
