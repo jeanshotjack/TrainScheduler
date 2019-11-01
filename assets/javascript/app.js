@@ -16,7 +16,6 @@ var name = "";
 var dest = "";
 var first = "";
 var freq = "";
-var next;
 
 $("#add-train").on("click", function (event) {
     event.preventDefault();
@@ -35,18 +34,28 @@ $("#add-train").on("click", function (event) {
         freq: freq,
     });
     console.log(name, dest, first);
+
+    $("#name").val("");
+    $("#dest").val("");
+    $("#first").val("");
+    $("#freq").val("");
 });
 
 database.ref().on("child_added", function (snapshot) {
     // storing the snapshot.val() in a variable for convenience
-    var sv = snapshot.val();
 
-    var now = moment().format("HH:mm");
-    var firstPretty = moment.unix(first).format("HH:mm");
+    var svName = snapshot.val().name;
+    var svDest = snapshot.val().dest;
+    var svFirst = snapshot.val().first;
+    var svFreq = snapshot.val().freq;
+
+    var firstPretty = moment.unix(svFirst).format("HH:mm");
 
     var diff = moment().diff(moment(firstPretty), "minutes");
 
-    var remain = diff % freq;
+    var freqPretty = moment.unix(svFreq).format("minutes");
+
+    var remain = diff % freqPretty;
 
     var mins = freq - remain;
 
@@ -54,19 +63,19 @@ database.ref().on("child_added", function (snapshot) {
 
 
     // Console.loging the last user's data
-    console.log(sv.name);
-    console.log(sv.dest);
-    console.log(sv.first);
-    console.log(sv.freq);
-    console.log(sv.next);
+    console.log(svName);
+    console.log(svDest);
+    console.log(firstPretty);
+    console.log(freqPretty);
+    console.log(next);
 
     // Change the HTML to reflect
     var newRow = $("<tr>");
 
-    var nameTD = $("<td>").text(sv.name);
-    var destTD = $("<td>").text(sv.dest);
-    var firstTD = $("<td>").text(sv.first);
-    var freqTD = $("<td>").text(sv.freq);
+    var nameTD = $("<td>").text(svName);
+    var destTD = $("<td>").text(svDest);
+    var firstTD = $("<td>").text(firstPretty);
+    var freqTD = $("<td>").text(freqPretty);
     var nextTD = $("<td>").text(next);
 
     newRow.append(nameTD);
