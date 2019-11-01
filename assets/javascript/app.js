@@ -49,24 +49,42 @@ database.ref().on("child_added", function (snapshot) {
     var svFirst = snapshot.val().first;
     var svFreq = snapshot.val().freq;
 
-    var firstPretty = moment.unix(svFirst).format("HH:mm");
+    // var firstPretty = moment.unix(svFirst).format("HH:mm");
 
-    var diff = moment().diff(moment(firstPretty), "minutes");
+    // var diff = moment().diff(moment(firstPretty), "minutes");
 
-    var freqPretty = moment.unix(svFreq).format("minutes");
+    // var freqPretty = moment.unix(svFreq).format("minutes");
 
-    var remain = diff % freqPretty;
+    // var remain = diff % freqPretty;
 
-    var mins = freq - remain;
+    // var mins = freq - remain;
 
-    var next = moment().add(mins, "minutes").format("HH:mm");
+    // var next = moment().add(mins, "minutes").format("HH:mm");
+
+    var firstPretty = moment(svFirst, "HH:mm").subtract(1, "years");
+    console.log(firstPretty);
+
+    var currentTime = moment().format("HH:mm");
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+    var diffT = moment().diff(moment(firstPretty), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffT);
+
+    var remain = diffT % svFreq;
+    console.log(remain);
+
+    var minsTill = svFreq - remain;
+    console.log("MINUTES TILL TRAIN: " + minsTill);
+
+    var next = moment().add(minsTill, "minutes");
+    console.log("ARRIVAL TIME: " + moment(next).format("HH:mm"));
 
 
     // Console.loging the last user's data
     console.log(svName);
     console.log(svDest);
     console.log(firstPretty);
-    console.log(freqPretty);
+    console.log(svFreq);
     console.log(next);
 
     // Change the HTML to reflect
@@ -75,7 +93,7 @@ database.ref().on("child_added", function (snapshot) {
     var nameTD = $("<td>").text(svName);
     var destTD = $("<td>").text(svDest);
     var firstTD = $("<td>").text(firstPretty);
-    var freqTD = $("<td>").text(freqPretty);
+    var freqTD = $("<td>").text(svFreq);
     var nextTD = $("<td>").text(next);
 
     newRow.append(nameTD);
