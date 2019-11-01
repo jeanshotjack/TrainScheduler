@@ -21,10 +21,10 @@ $("#add-train").on("click", function (event) {
     event.preventDefault();
 
     // Grabbed values from text boxes
-    name = $("#name").val().trim();
-    dest = $("#dest").val().trim();
-    first = $("#first").val().trim();
-    freq = $("#freq").val().trim();
+    name = $("#name").val();
+    dest = $("#dest").val();
+    first = $("#first").val();
+    freq = $("#freq").val();
 
     // Code for handling the push
     database.ref().push({

@@ -17,71 +17,80 @@
 </head>
 
 <body>
-    <div class="jumbotron jumbotron-fluid mb-4 ml-4 mr-4"
+    <div class="jumbotron jumbotron-fluid mb-4 ml-4 mr-4 h-10"
         style="background-color: #BC412B; font-family: 'Russo One', sans-serif;">
         <i class="material-icons" style="font-size: 150px; float: left; color: white; position: absolute; top: 2%;">
             train</i>
         <div class="container">
-            <h1 class="display-6 text-white">
-                Train Scheduler 
+            <h1 class="display-6 text-white" style="position: relative; left: 5%;">
+                Train Scheduler
             </h1>
         </div>
     </div>
-    <div class="card m-4">
-        <div class="card-header">
-            Trains Arriving
-        </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="card ml-4 float-left w-100">
+                <div class="card-header">
+                    Search Train
+                </div>
+                <div class="card-body text-secondary pt-0 pb-0">
+                    <p class="card-text">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Train Name</label>
+                                <input id="name" class="form-control" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Destination</label>
+                                <input id="dest" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Earliest Train</label>
+                                <input id="first" class="form-control text-secondary">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Frequency</label>
+                                <input id="freq" class="form-control">
+                            </div>
 
-        <div id="result" class="card-body text-secondary pt-0 pb-0">
-            <p class="card-text">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Train Name</th>
-                            <th scope="col">Destination</th>
-                            <th scope="col">Earliest</th>
-                            <th scope="col">Frequency</th>
-                            <th scope="col">Next Train</th>
-                        </tr>
-                    </thead>
-                    <tbody id="newNew">
+                            <span>
+                                <button id="add-train" type="button" class="btn float-right text-white mb-4"
+                                    style="background-color: #BC412B">
+                                    Submit
+                                </button>
+                        </form>
+                    </p>
+                </div>
+            </div>
 
-                    </tbody>
-                </table>
-            </p>
         </div>
-    </div>
-    <div class="card m-4">
-        <div class="card-header">
-            Search Train
-        </div>
-        <div class="card-body text-secondary pt-0 pb-0">
-            <p class="card-text">
-                <form>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Train Name</label>
-                        <input id="name" class="form-control" aria-describedby="emailHelp">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Destination</label>
-                        <input id="dest" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Earliest Train</label>
-                        <input id="first" class="form-control text-secondary">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Frequency</label>
-                        <input id="freq" class="form-control">
-                    </div>
+        <div class="col-1"></div>
+        <div class="col-7">
+            <div class="card mr-4 float-right w-100">
+                <div class="card-header">
+                    Trains Arriving
+                </div>
 
-                    <span>
-                        <button id="add-train" type="button" class="btn float-right text-white mb-4"
-                            style="background-color: #BC412B">
-                            Submit
-                        </button>
-                </form>
-            </p>
+                <div id="result" class="card-body text-secondary pt-0 pb-0">
+                    <p class="card-text">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Train Name</th>
+                                    <th scope="col">Destination</th>
+                                    <th scope="col">Earliest</th>
+                                    <th scope="col">Frequency</th>
+                                    <th scope="col">Next Train</th>
+                                </tr>
+                            </thead>
+                            <tbody id="newNew">
+
+                            </tbody>
+                        </table>
+                    </p>
+                </div>
+            </div>
+
         </div>
     </div>
 
