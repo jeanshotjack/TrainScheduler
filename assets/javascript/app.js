@@ -1,24 +1,22 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyDZIzqPUY1k6ddBtl6kXkZGFT7J_ekS7JQ",
-    authDomain: "train-schedulier.firebaseapp.com",
-    databaseURL: "https://train-schedulier.firebaseio.com",
-    projectId: "train-schedulier",
-    storageBucket: "train-schedulier.appspot.com",
-    messagingSenderId: "21194834990",
-    appId: "1:21194834990:web:a8345528c01ed0eac84bbf",
-    measurementId: "G-PC239VHNLB"
-  };
+    apiKey: "AIzaSyCgb7TVh4WZgMtLy8rYygN4jcj9ARrb714",
+    authDomain: "test-app-26410.firebaseapp.com",
+    databaseURL: "https://test-app-26410.firebaseio.com",
+    projectId: "test-app-26410",
+    storageBucket: "test-app-26410.appspot.com",
+    messagingSenderId: "362716079969",
+    appId: "1:362716079969:web:6ec054bc430e9e40e3c720"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-
-  var database = firebase.database();
+var database = firebase.database();
 
 var name = "";
 var dest = "";
 var first = "";
 var freq = "";
-var next = "";
+var next;
 
 $("#add-train").on("click", function (event) {
     event.preventDefault();
@@ -42,13 +40,25 @@ $("#add-train").on("click", function (event) {
 database.ref().on("child_added", function (snapshot) {
     // storing the snapshot.val() in a variable for convenience
     var sv = snapshot.val();
-    
+
+    var now = moment().format("HH:mm");
+    var firstPretty = moment.unix(first).format("HH:mm");
+
+    var diff = moment().diff(moment(firstPretty), "minutes");
+
+    var remain = diff % freq;
+
+    var mins = freq - remain;
+
+    var next = moment().add(mins, "minutes").format("HH:mm");
+
 
     // Console.loging the last user's data
     console.log(sv.name);
     console.log(sv.dest);
     console.log(sv.first);
     console.log(sv.freq);
+    console.log(sv.next);
 
     // Change the HTML to reflect
     var newRow = $("<tr>");
@@ -57,7 +67,7 @@ database.ref().on("child_added", function (snapshot) {
     var destTD = $("<td>").text(sv.dest);
     var firstTD = $("<td>").text(sv.first);
     var freqTD = $("<td>").text(sv.freq);
-    var nextTD = $("<td>").text(sv.next);
+    var nextTD = $("<td>").text(next);
 
     newRow.append(nameTD);
     newRow.append(destTD);
